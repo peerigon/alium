@@ -1,11 +1,12 @@
 {
-	"name": "alios",
+	"name": "alium",
 	"version": "0.0.1",
 	"description": "",
 	"main": "dist/index.js",
 	"scripts": {
-		"dev": "yarn watch",
+		"dev": "yarn watch && yarn link",
 		"watch": "nodemon -e js,ts --watch src --exec \"yarn run build && chmod +x ~/bin/ali\"",
+		"link": "rm ~/bin/ali && ln -s $PWD/dist/index.js ~/bin/ali && chmod +x ~/bin/ali",
 		"test": "echo 'ok.'",
 		"lint": "eslint ./src --ext .ts,.tsx",
 		"lint:fix": "eslint ./src --ext .ts,.tsx --fix",
