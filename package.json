@@ -1,15 +1,19 @@
 {
 	"name": "alium",
-	"version": "1.0.0",
+	"version": "1.0.2",
 	"description": "Save CLI commands as aliases on a directory basis",
 	"main": "src/cli.ts",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/moritzjacobs/alium.git"
+	},
 	"bin": {
 		"alium-bin": "./dist/cli.js"
 	},
 	"scripts": {
 		"build": "yarn clean && tsc -p tsconfig.json && chmod +x dist/cli.js",
 		"clean": "rimraf ./dist",
-		"dev": "yarn unlink alium && yarn link && yarn watch",
+		"dev": "yarn watch",
 		"lint": "eslint ./src --ext .ts,.tsx",
 		"lint:fix": "eslint ./src --ext .ts,.tsx --fix",
 		"test": "yarn lint",
@@ -49,9 +53,12 @@
 		"ts-node": "^8.3.0",
 		"typescript": "^3.5.1"
 	},
-	"keywords": [],
-	"author": "",
-	"license": "UNLICENSED",
+	"keywords": [
+		"cli",
+		"alias"
+	],
+	"author": "Moritz Jacobs <mail@moritzjacobs.de>",
+	"license": "MIT",
 	"dependencies": {
 		"@types/inquirer": "^6.0.3",
 		"await-exec": "^0.1.2",
