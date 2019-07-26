@@ -53,9 +53,9 @@
 		"ts-node": "^8.3.0",
 		"typescript": "^3.5.1"
 	},
-	"keywords": [],
-	"author": "",
-	"license": "UNLICENSED",
+	"keywords": ["cli", "alias"],
+	"author": "Moritz Jacobs <mail@moritzjacobs.de>",
+	"license": "MIT",
 	"dependencies": {
 		"@types/inquirer": "^6.0.3",
 		"await-exec": "^0.1.2",
