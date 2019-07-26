@@ -4,7 +4,7 @@ Save CLI commands as aliases on a directory basis!
 
 ## Installation
 
-1. `npm install alium -g` or `yarn add alium -g` or similar.
+1. `npm install alium -g` or `yarn global add alium` or similar.
 
 2. put this in your `~/.bashrc` or somewhere suitable
 	
