@@ -3,7 +3,7 @@ import { join } from "path";
 import { existsSync, readFileSync, writeFileSync } from "fs";
 import {error} from "./output";
 
-const filePath = join(homedir(), ".alios.json");
+const filePath = join(homedir(), ".alium.json");
 
 export type Commands = {
 	[key: string]: string;

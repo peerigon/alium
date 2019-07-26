@@ -1,61 +1,42 @@
 #!/usr/bin/env node
 
-import program from "commander";
 import exec from "await-exec";
 import { say, error } from "./output";
 import listCommands, { getCommandsForCwd } from "./commands";
-
+import { bailOnMissingArg, parseArgv } from "./util";
 import { promptSave, promptRemove } from "./prompt";
 
-const cwd = process.cwd();
-const { argv } = process;
 
-function bailOnMissingArg(arg: any) {
-	const argumentMissing = typeof arg !== "string";
-	if (argumentMissing) {
-		program.outputHelp();
-		process.exit(0);
-	}
-}
+const cwd = process.cwd();
 
 (async () => {
-	if (argv.length <= 2) {
-		argv.push("-l");
-	}
+	const { list, save, remove, userAlias } = parseArgv(process.argv);
 
-	let userAlias = "";
-
-	program
-		.arguments("<cmd> [env]")
-		.version(process.env.npm_package_version || "0.0.0")
-		.option("-l, --list", "List aliases")
-		.option("-s, --save [alias]", "Save an alias")
-		.option("-r, --remove [alias]", "remove alias")
-		.action((cmd: string) => {
-			userAlias = cmd;
-		})
-		.parse(argv);
-
-	if (program.list === true) {
+	if (list === true) {
 		listCommands(cwd);
 		return;
 	}
 
-	if (program.save) {
-		bailOnMissingArg(program.save);
-		const written = await promptSave(cwd, program.save);
-		say(written ? "All clear and ready to use!" : "Nothing has changed.");
+	if (save) {
+		bailOnMissingArg(save);
+		const written = await promptSave(cwd, save);
+		if (written) {
+			say(`Saved alias \`${save}\``);
+		} else {
+			error("Could not save alias!");
+		}
+		return;
 	}
 
-	if (program.remove) {
-		bailOnMissingArg(program.remove);
+	if (remove) {
+		bailOnMissingArg(remove);
 
-		const removed = await promptRemove(cwd, program.remove);
+		const removed = await promptRemove(cwd, remove);
 
 		say(
 			removed
-				? `Removed alias \`${program.remove}\``
-				: `Alias \`${program.remove}\` not found`
+				? `Removed alias \`${remove}\``
+				: `Alias \`${remove}\` not found`
 		);
 		return;
 	}
@@ -68,7 +49,7 @@ function bailOnMissingArg(arg: any) {
 			say(`Running \`${userAlias}\``);
 			const { stdout, stderr } = await exec(commands[userAlias], {
 				cwd,
-				shell: process.env.SHELL
+				shell: false
 			});
 			// eslint-disable-next-line no-console
 			console.log(stdout, stderr);
