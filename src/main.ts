@@ -6,7 +6,7 @@ import { promptSave, promptRemove } from "./prompt";
 import { PEC_ABORT } from "./constants";
 
 
-(async () => {
+export default async () => {
 	const { list, save, remove, userAlias } = parseArgv(process.argv);
 	const cwd = process.cwd();
 
@@ -51,5 +51,5 @@ import { PEC_ABORT } from "./constants";
 	}
 
 	process.exit(PEC_ABORT);
-})();
+};
 
