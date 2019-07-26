@@ -1,0 +1,57 @@
+{
+	"name": "alios",
+	"version": "0.0.1",
+	"description": "",
+	"main": "dist/index.js",
+	"scripts": {
+		"dev": "yarn watch",
+		"watch": "nodemon -e js,ts --watch src --exec \"yarn run build && chmod +x ~/bin/ali\"",
+		"test": "echo 'ok.'",
+		"lint": "eslint ./src --ext .ts,.tsx",
+		"lint:fix": "eslint ./src --ext .ts,.tsx --fix",
+		"clean": "rimraf ./dist",
+		"build": "yarn clean && tsc -p tsconfig.json"
+	},
+	"husky": {
+		"hooks": {
+			"pre-commit": "npm test",
+			"pre-push": "npm test"
+		}
+	},
+	"lint-staged": {
+		"./src/**/*.{js,jsx}": [
+			"lint:fix",
+			"git add"
+		]
+	},
+	"devDependencies": {
+		"@types/node": "^12.0.7",
+		"@typescript-eslint/eslint-plugin": "^1.0.0",
+		"@typescript-eslint/parser": "^1.11.0",
+		"eslint": "^5.16.0",
+		"eslint-config-airbnb-typescript": "^4.0.0",
+		"eslint-config-prettier": "^4.3.0",
+		"eslint-plugin-import": "^2.14.0",
+		"eslint-plugin-jsx-a11y": "^6.2.3",
+		"eslint-plugin-react": "^7.14.2",
+		"husky": "^2.4.0",
+		"jest": "^24.8.0",
+		"lint-staged": "^8.2.0",
+		"nodemon": "^1.19.1",
+		"prettier": "^1.18.0",
+		"rimraf": "^2.6.3",
+		"ts-jest": "^24.0.2",
+		"ts-node": "^5.0.1",
+		"typescript": "^3.5.1"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "UNLICENSED",
+	"dependencies": {
+		"@types/inquirer": "^6.0.3",
+		"await-exec": "^0.1.2",
+		"chalk": "^2.4.2",
+		"commander": "^2.20.0",
+		"inquirer": "^6.4.1"
+	}
+}
