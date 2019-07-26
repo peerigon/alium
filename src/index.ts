@@ -1,20 +1,18 @@
 #!/usr/bin/env node
-
-import exec from "await-exec";
 import { say, error } from "./output";
 import listCommands, { getCommandsForCwd } from "./commands";
-import { bailOnMissingArg, parseArgv } from "./util";
+import { run, bailOnMissingArg, parseArgv } from "./util";
 import { promptSave, promptRemove } from "./prompt";
+import { PEC_ABORT } from "./constants";
 
-
-const cwd = process.cwd();
 
 (async () => {
 	const { list, save, remove, userAlias } = parseArgv(process.argv);
+	const cwd = process.cwd();
 
 	if (list === true) {
 		listCommands(cwd);
-		return;
+		process.exit(PEC_ABORT);
 	}
 
 	if (save) {
@@ -25,7 +23,7 @@ const cwd = process.cwd();
 		} else {
 			error("Could not save alias!");
 		}
-		return;
+		process.exit(PEC_ABORT);
 	}
 
 	if (remove) {
@@ -38,7 +36,7 @@ const cwd = process.cwd();
 				? `Removed alias \`${remove}\``
 				: `Alias \`${remove}\` not found`
 		);
-		return;
+		process.exit(PEC_ABORT);
 	}
 
 	if (userAlias) {
@@ -46,16 +44,12 @@ const cwd = process.cwd();
 		const commandExists = commands && userAlias in commands;
 
 		if (commandExists && commands) {
-			say(`Running \`${userAlias}\``);
-			const { stdout, stderr } = await exec(commands[userAlias], {
-				cwd,
-				shell: false
-			});
-			// eslint-disable-next-line no-console
-			console.log(stdout, stderr);
-			return;
+			run(commands[userAlias]);
 		}
 
 		error(`Alias \`${userAlias}\` not found.`);
 	}
+
+	process.exit(PEC_ABORT);
 })();
+

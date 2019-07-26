@@ -1,17 +1,17 @@
 {
 	"name": "alium",
-	"version": "0.0.1",
+	"version": "0.0.0",
 	"description": "",
 	"main": "dist/index.js",
 	"scripts": {
-		"dev": "yarn watch && yarn link",
-		"watch": "nodemon -e js,ts --watch src --exec \"yarn run build && chmod +x ~/bin/ali\"",
-		"link": "rm ~/bin/ali && ln -s $PWD/dist/index.js ~/bin/ali && chmod +x ~/bin/ali",
-		"test": "echo 'ok.'",
+		"build": "yarn clean && tsc -p tsconfig.json",
+		"clean": "rimraf ./dist",
+		"dev": "yarn dev:link:bin && yarn watch",
+		"dev:link:bin": "rimraf ~/.alium/bin; symlink-dir $PWD/dist/index.js ~/.alium/bin && chmod +x ~/.alium/bin",
 		"lint": "eslint ./src --ext .ts,.tsx",
 		"lint:fix": "eslint ./src --ext .ts,.tsx --fix",
-		"clean": "rimraf ./dist",
-		"build": "yarn clean && tsc -p tsconfig.json"
+		"test": "yarn lint",
+		"watch": "nodemon -e js,ts --watch src --exec \"yarn run build && chmod +x ~/.alium/bin\""
 	},
 	"husky": {
 		"hooks": {
@@ -26,23 +26,25 @@
 		]
 	},
 	"devDependencies": {
+		"@types/debug": "^4.1.4",
 		"@types/node": "^12.0.7",
 		"@typescript-eslint/eslint-plugin": "^1.0.0",
 		"@typescript-eslint/parser": "^1.11.0",
-		"eslint": "^5.16.0",
+		"eslint": "^6.1.0",
 		"eslint-config-airbnb-typescript": "^4.0.0",
-		"eslint-config-prettier": "^4.3.0",
+		"eslint-config-prettier": "^6.0.0",
 		"eslint-plugin-import": "^2.14.0",
 		"eslint-plugin-jsx-a11y": "^6.2.3",
 		"eslint-plugin-react": "^7.14.2",
-		"husky": "^2.4.0",
+		"husky": "^3.0.1",
 		"jest": "^24.8.0",
-		"lint-staged": "^8.2.0",
+		"lint-staged": "^9.2.1",
 		"nodemon": "^1.19.1",
 		"prettier": "^1.18.0",
 		"rimraf": "^2.6.3",
+		"symlink-dir": "^3.1.0",
 		"ts-jest": "^24.0.2",
-		"ts-node": "^5.0.1",
+		"ts-node": "^8.3.0",
 		"typescript": "^3.5.1"
 	},
 	"keywords": [],
@@ -53,6 +55,7 @@
 		"await-exec": "^0.1.2",
 		"chalk": "^2.4.2",
 		"commander": "^2.20.0",
+		"debug": "^4.1.1",
 		"inquirer": "^6.4.1"
 	}
 }

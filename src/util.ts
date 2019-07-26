@@ -1,14 +1,30 @@
 /* eslint-disable import/prefer-default-export */
+import { homedir } from "os";
+import { join } from "path";
+import fs from "fs";
 import program from "commander";
-import { VERSION } from "./constants";
+import { say, error, debug } from "./output";
+import { VERSION, COMMAND_FILE_NAME, PEC_AFTER_RUN, PEC_ABORT } from "./constants";
 
-
+export async function run(command:string) {
+	try {
+		const filePath = join(homedir(), COMMAND_FILE_NAME);
+		debug(`Write "${command}" to ${filePath}`);
+		fs.writeFileSync(filePath, command, 'utf8');
+		
+		say(`Run: \`${command}\``);
+		process.exit(PEC_AFTER_RUN);
+	} catch(err) {
+		error(err);
+		process.exit(PEC_ABORT);
+	}
+}
 
 export function bailOnMissingArg(arg: any) {
 	const argumentMissing = typeof arg !== "string";
 	if (argumentMissing) {
 		program.outputHelp();
-		process.exit(0);
+		process.exit(PEC_ABORT);
 	}
 }
 

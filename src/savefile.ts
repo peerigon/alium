@@ -1,9 +1,10 @@
 import { homedir } from "os";
 import { join } from "path";
 import { existsSync, readFileSync, writeFileSync } from "fs";
-import {error} from "./output";
+import { error } from "./output";
+import { ALIASES_FILE_NAME } from "./constants";
 
-const filePath = join(homedir(), ".alium.json");
+const filePath = join(homedir(), ALIASES_FILE_NAME);
 
 export type Commands = {
 	[key: string]: string;
@@ -31,7 +32,7 @@ function saveToFile(file: SaveFile) {
 	writeFileSync(filePath, json, "utf-8");
 }
 
-export function saveDirs(dirs:Dirs) {
+export function saveDirs(dirs: Dirs) {
 	const file = readSaveFile();
 	saveToFile({ ...file, dirs });
 }
