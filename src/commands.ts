@@ -25,6 +25,6 @@ export default function(cwd: string) {
 		const aliasCommand = commands[alias];
 		const aliasPadded = alias.padEnd(aliasPadEnd);
 
-		say(`${aliasPadded}  👉   ${aliasCommand}`);
+		say(`${aliasPadded}  ‣  ${aliasCommand}`);
 	});
 }
