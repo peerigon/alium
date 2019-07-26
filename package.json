@@ -1,7 +1,7 @@
 {
 	"name": "alium",
-	"version": "0.0.2",
-	"description": "",
+	"version": "1.0.0",
+	"description": "Save CLI commands as aliases on a directory basis",
 	"main": "src/cli.ts",
 	"bin": {
 		"alium-bin": "./dist/cli.js"
@@ -9,7 +9,7 @@
 	"scripts": {
 		"build": "yarn clean && tsc -p tsconfig.json && chmod +x dist/cli.js",
 		"clean": "rimraf ./dist",
-		"dev": "yarn link && yarn watch; yarn unlink",
+		"dev": "yarn unlink alium && yarn link && yarn watch",
 		"lint": "eslint ./src --ext .ts,.tsx",
 		"lint:fix": "eslint ./src --ext .ts,.tsx --fix",
 		"test": "yarn lint",
