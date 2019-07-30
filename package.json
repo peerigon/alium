@@ -16,8 +16,8 @@
 		"dev": "yarn watch",
 		"lint": "eslint ./src --ext .ts,.tsx",
 		"lint:fix": "eslint ./src --ext .ts,.tsx --fix",
-		"test": "yarn build && yarn lint",
-		"watch": "nodemon -e js,ts --watch src --exec \"yarn run build && chmod +x ~/.alium/bin\""
+		"test": "yarn lint",
+		"watch": "nodemon -e js,ts --watch src --exec \"yarn run build\""
 	},
 	"husky": {
 		"hooks": {

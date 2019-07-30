@@ -3,6 +3,7 @@ import { join } from "path";
 import { existsSync, readFileSync, writeFileSync } from "fs";
 import { error } from "./output";
 import { ALIASES_FILE_NAME } from "./constants";
+import { ensureDirectoryExistence } from "./util";
 
 const filePath = join(homedir(), ALIASES_FILE_NAME);
 
@@ -18,7 +19,6 @@ type SaveFile = {
 	dirs: Dirs;
 };
 
-// eslint-disable-next-line import/prefer-default-export
 export function readSaveFile(): SaveFile {
 	if (!existsSync(filePath)) {
 		return { dirs: {} };
@@ -28,6 +28,7 @@ export function readSaveFile(): SaveFile {
 }
 
 function saveToFile(file: SaveFile) {
+	ensureDirectoryExistence(filePath);
 	const json = JSON.stringify(file, null, 2);
 	writeFileSync(filePath, json, "utf-8");
 }
