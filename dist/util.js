@@ -1,20 +1,37 @@
 "use strict";
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (Object.hasOwnProperty.call(mod, k)) result[k] = mod[k];
+    result["default"] = mod;
+    return result;
+};
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 /* eslint-disable import/prefer-default-export */
 const os_1 = require("os");
-const path_1 = require("path");
+const path_1 = __importStar(require("path"));
 const fs_1 = __importDefault(require("fs"));
 const commander_1 = __importDefault(require("commander"));
 const output_1 = require("./output");
 const constants_1 = require("./constants");
+function ensureDirectoryExistence(fp) {
+    const dirname = path_1.default.dirname(fp);
+    if (fs_1.default.existsSync(dirname)) {
+        return;
+    }
+    ensureDirectoryExistence(dirname);
+    fs_1.default.mkdirSync(dirname);
+}
+exports.ensureDirectoryExistence = ensureDirectoryExistence;
 async function run(command) {
     try {
         const filePath = path_1.join(os_1.homedir(), constants_1.COMMAND_FILE_NAME);
+        ensureDirectoryExistence(filePath);
         output_1.debug(`Write "${command}" to ${filePath}`);
-        fs_1.default.writeFileSync(filePath, command, 'utf8');
+        fs_1.default.writeFileSync(filePath, command, "utf8");
         output_1.say(`Run: \`${command}\``);
         process.exit(constants_1.PEC_AFTER_RUN);
     }
@@ -39,7 +56,7 @@ function parseArgv(argv) {
     let userAlias = "";
     commander_1.default
         .arguments("<cmd> [env]")
-        .version(constants_1.VERSION, '-v, --version')
+        .version(constants_1.VERSION, "-v, --version")
         .option("-l, --list", "List aliases")
         .option("-s, --save [alias]", "Save an alias")
         .option("-r, --remove [alias]", "remove alias")
