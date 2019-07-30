@@ -5,8 +5,8 @@ const path_1 = require("path");
 const fs_1 = require("fs");
 const output_1 = require("./output");
 const constants_1 = require("./constants");
+const util_1 = require("./util");
 const filePath = path_1.join(os_1.homedir(), constants_1.ALIASES_FILE_NAME);
-// eslint-disable-next-line import/prefer-default-export
 function readSaveFile() {
     if (!fs_1.existsSync(filePath)) {
         return { dirs: {} };
@@ -16,6 +16,7 @@ function readSaveFile() {
 }
 exports.readSaveFile = readSaveFile;
 function saveToFile(file) {
+    util_1.ensureDirectoryExistence(filePath);
     const json = JSON.stringify(file, null, 2);
     fs_1.writeFileSync(filePath, json, "utf-8");
 }
