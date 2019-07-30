@@ -1,6 +1,6 @@
 {
 	"name": "alium",
-	"version": "1.0.2",
+	"version": "1.0.3",
 	"description": "Save CLI commands as aliases on a directory basis",
 	"main": "src/cli.ts",
 	"repository": {
