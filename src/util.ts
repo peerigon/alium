@@ -46,7 +46,7 @@ export function bailOnMissingArg(arg: any) {
 
 export function parseArgv(argv: Array<string>) {
 	if (argv.length <= 2) {
-		argv.push("-l");
+		argv.push("-p");
 	}
 
 	let userAlias = "";
@@ -54,9 +54,10 @@ export function parseArgv(argv: Array<string>) {
 	program
 		.arguments("<cmd> [env]")
 		.version(VERSION, "-v, --version")
-		.option("-l, --list", "List aliases")
-		.option("-s, --save [alias]", "Save an alias")
-		.option("-r, --remove [alias]", "remove alias")
+		.option("-l, --list", "List aliases in this directory")
+		.option("-p, --pick", "Pick from aliases for this directory")
+		.option("-s, --save [alias]", "Save an alias for this directory")
+		.option("-r, --remove [alias]", "remove alias from this directory")
 		.action((cmd: string) => {
 			userAlias = cmd;
 		})
@@ -65,6 +66,7 @@ export function parseArgv(argv: Array<string>) {
 	return {
 		save: program.save,
 		list: program.list,
+		pick: program.pick,
 		remove: program.remove,
 		userAlias
 	};

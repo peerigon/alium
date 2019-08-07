@@ -64,8 +64,9 @@ export async function promptRemove(
 		return false;
 	}
 
-	const shouldRemove = oldStruct && await confirmRemove(alias, oldStruct[alias]);
-	if(shouldRemove) {
+	const shouldRemove =
+		oldStruct && (await confirmRemove(alias, oldStruct[alias]));
+	if (shouldRemove) {
 		removeCommand(cwd, alias);
 		return true;
 	}
