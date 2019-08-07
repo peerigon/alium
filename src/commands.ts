@@ -1,5 +1,7 @@
+import inquirer from "inquirer";
 import { say } from "./output";
 import { readSaveFile, Commands } from "./savefile";
+import { ABORT_STRING } from "./constants";
 
 export function getCommandsForCwd(cwd: string): Commands | null {
 	const { dirs } = readSaveFile();
@@ -9,22 +11,50 @@ export function getCommandsForCwd(cwd: string): Commands | null {
 	return null;
 }
 
-export default function(cwd: string) {
-	const commands = getCommandsForCwd(cwd);
-
-	if (!commands || Object.keys(commands).length < 1) {
-		say(`No aliases found for this directory.`);
-		return;
-	}
-
+export function listCommandsInCwd(
+	cwd: string,
+	commands: Commands
+): string[] | null {
 	const aliasPadEnd = Math.max(
 		...[...Object.keys(commands).map((s: string): number => s.length)]
 	);
 
-	Object.keys(commands).forEach((alias: string) => {
+	return Object.keys(commands).map((alias: string) => {
 		const aliasCommand = commands[alias];
 		const aliasPadded = alias.padEnd(aliasPadEnd);
 
-		say(`${aliasPadded}  ‣  ${aliasCommand}`);
+		return `${aliasPadded}  ‣  ${aliasCommand}`;
 	});
+}
+
+export default async function(cwd: string): Promise<string | null> {
+	const commands = getCommandsForCwd(cwd);
+	if (!commands || Object.keys(commands).length < 1) {
+		say(`No aliases found for this directory.`);
+		return null;
+	}
+
+	const choices = listCommandsInCwd(cwd, commands);
+	if (!choices) {
+		say(`No aliases found for this directory.`);
+		return null;
+	}
+
+	choices.push(ABORT_STRING);
+
+	const { picked } = await inquirer.prompt({
+		type: "list",
+		choices,
+		name: "picked",
+		message: `Possible aliases for ${cwd}`
+	});
+
+	if (picked === ABORT_STRING) {
+		return null;
+	}
+
+	const pickedAlias = Object.keys(commands)[
+		choices.findIndex(c => c === picked)
+	];
+	return commands[pickedAlias];
 }

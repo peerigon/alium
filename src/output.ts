@@ -4,13 +4,13 @@ import debugHOC from "debug";
 import chalk from "chalk";
 
 export function say(str: string) {
-	console.log(chalk.grey(`🍝  ${str}`));
+	console.log(`${chalk.green(`Ⓐ `)} ${chalk.grey(`${str}`)}`);
 }
 
 export function error(str: string) {
-	console.log(chalk.red(`🍝  ${str}`));
+	console.log(`${chalk.red(`Ⓐ `)} ${chalk.grey(`${str}`)}`);
 }
 
 export function debug(str: string) {
-	debugHOC("alium")(chalk.red(`⌨️  ${str}`));
+	debugHOC("alium")(chalk.red(`⌨️ ${str}`));
 }
