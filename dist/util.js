@@ -51,15 +51,16 @@ function bailOnMissingArg(arg) {
 exports.bailOnMissingArg = bailOnMissingArg;
 function parseArgv(argv) {
     if (argv.length <= 2) {
-        argv.push("-l");
+        argv.push("-p");
     }
     let userAlias = "";
     commander_1.default
         .arguments("<cmd> [env]")
         .version(constants_1.VERSION, "-v, --version")
-        .option("-l, --list", "List aliases")
-        .option("-s, --save [alias]", "Save an alias")
-        .option("-r, --remove [alias]", "remove alias")
+        .option("-l, --list", "List aliases in this directory")
+        .option("-p, --pick", "Pick from aliases for this directory")
+        .option("-s, --save [alias]", "Save an alias for this directory")
+        .option("-r, --remove [alias]", "remove alias from this directory")
         .action((cmd) => {
         userAlias = cmd;
     })
@@ -67,6 +68,7 @@ function parseArgv(argv) {
     return {
         save: commander_1.default.save,
         list: commander_1.default.list,
+        pick: commander_1.default.pick,
         remove: commander_1.default.remove,
         userAlias
     };
