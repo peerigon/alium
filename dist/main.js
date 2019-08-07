@@ -14,10 +14,23 @@ const util_1 = require("./util");
 const prompt_1 = require("./prompt");
 const constants_1 = require("./constants");
 exports.default = async () => {
-    const { list, save, remove, userAlias } = util_1.parseArgv(process.argv);
+    const { list, pick, save, remove, userAlias } = util_1.parseArgv(process.argv);
     const cwd = process.cwd();
     if (list === true) {
-        commands_1.default(cwd);
+        const commands = commands_1.getCommandsForCwd(cwd);
+        if (commands) {
+            const aliases = commands_1.listCommandsInCwd(cwd, commands);
+            if (aliases) {
+                aliases.map(output_1.say);
+            }
+        }
+        process.exit(constants_1.PEC_ABORT);
+    }
+    if (pick === true) {
+        const pickedCommand = await commands_1.default(cwd);
+        if (pickedCommand) {
+            util_1.run(pickedCommand);
+        }
         process.exit(constants_1.PEC_ABORT);
     }
     if (save) {
@@ -34,9 +47,12 @@ exports.default = async () => {
     if (remove) {
         util_1.bailOnMissingArg(remove);
         const removed = await prompt_1.promptRemove(cwd, remove);
-        output_1.say(removed
-            ? `Removed alias \`${remove}\``
-            : `Alias \`${remove}\` not found`);
+        if (removed) {
+            output_1.say(`Removed alias \`${remove}\``);
+        }
+        else {
+            output_1.error(`Alias \`${remove}\` not found`);
+        }
         process.exit(constants_1.PEC_ABORT);
     }
     if (userAlias) {

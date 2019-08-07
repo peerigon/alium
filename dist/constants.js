@@ -6,3 +6,4 @@ exports.COMMAND_FILE_NAME = ".alium/cmd";
 exports.ALIASES_FILE_NAME = ".alium/aliases.json";
 exports.PEC_ABORT = 66;
 exports.PEC_AFTER_RUN = 23;
+exports.ABORT_STRING = '— abort —';

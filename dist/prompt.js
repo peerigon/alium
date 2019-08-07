@@ -51,7 +51,7 @@ async function promptRemove(cwd, alias) {
     if (!oldStruct || !oldStruct[alias]) {
         return false;
     }
-    const shouldRemove = oldStruct && await confirmRemove(alias, oldStruct[alias]);
+    const shouldRemove = oldStruct && (await confirmRemove(alias, oldStruct[alias]));
     if (shouldRemove) {
         savefile_1.removeCommand(cwd, alias);
         return true;
