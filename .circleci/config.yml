@@ -1,34 +1,9 @@
 version: 2
 jobs:
     build:
-        working_directory: ~/mern-starter
         docker:
-            - image: circleci/node:10.16.3
+            - image: circleci/node:latest
         steps:
             - checkout
-            - run:
-                  name: Update npm
-                  command: "sudo npm install -g npm@latest"
-            - run:
-                  name: npm install
-                  command: npm install
-    test:
-        docker:
-            - image: circleci/node:10.16.3
-        steps:
-            - checkout
-            - run:
-                  name: Test
-                  command: npm test
-
-workflows:
-    version: 2
-    build_and_test:
-        jobs:
-            - build
-            - test:
-                  requires:
-                      - build
-                  filters:
-                      branches:
-                          only: master
+            - run: npm install
+            - run: npm test
