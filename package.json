@@ -1,6 +1,6 @@
 {
 	"name": "alium",
-	"version": "1.1.2",
+	"version": "1.1.4",
 	"description": "Save CLI commands as aliases on a directory basis",
 	"main": "src/cli.ts",
 	"repository": {
@@ -11,6 +11,7 @@
 		"alium-bin": "./dist/cli.js"
 	},
 	"scripts": {
+		"prepublish": "yarn build",
 		"build": "yarn clean && tsc -p tsconfig.json && chmod +x dist/cli.js",
 		"clean": "rimraf ./dist",
 		"dev": "yarn watch",
