@@ -1,6 +1,6 @@
 {
 	"name": "alium",
-	"version": "1.0.2",
+	"version": "1.1.2",
 	"description": "Save CLI commands as aliases on a directory basis",
 	"main": "src/cli.ts",
 	"repository": {
@@ -17,7 +17,7 @@
 		"lint": "eslint ./src --ext .ts,.tsx",
 		"lint:fix": "eslint ./src --ext .ts,.tsx --fix",
 		"test": "yarn build && yarn lint",
-		"watch": "nodemon -e js,ts --watch src --exec \"yarn run build && chmod +x ~/.alium/bin\""
+		"watch": "nodemon -e js,ts --watch src --exec \"yarn run build\""
 	},
 	"husky": {
 		"hooks": {
@@ -32,26 +32,26 @@
 		]
 	},
 	"devDependencies": {
-		"@types/debug": "^4.1.4",
-		"@types/node": "^12.0.7",
-		"@typescript-eslint/eslint-plugin": "^1.0.0",
-		"@typescript-eslint/parser": "^1.11.0",
-		"eslint": "^6.1.0",
-		"eslint-config-airbnb-typescript": "^4.0.0",
-		"eslint-config-prettier": "^6.0.0",
+		"@types/debug": "4.1.5",
+		"@types/node": "12.7.12",
+		"@typescript-eslint/eslint-plugin": "2.3.3",
+		"@typescript-eslint/parser": "2.3.3",
+		"eslint": "6.5.1",
+		"eslint-config-airbnb-typescript": "5.0.0",
+		"eslint-config-prettier": "6.4.0",
 		"eslint-plugin-import": "^2.14.0",
 		"eslint-plugin-jsx-a11y": "^6.2.3",
-		"eslint-plugin-react": "^7.14.2",
-		"husky": "^3.0.1",
-		"jest": "^24.8.0",
-		"lint-staged": "^9.2.1",
-		"nodemon": "^1.19.1",
+		"eslint-plugin-react": "7.16.0",
+		"husky": "3.0.9",
+		"jest": "24.9.0",
+		"lint-staged": "9.4.2",
+		"nodemon": "1.19.3",
 		"prettier": "^1.18.0",
-		"rimraf": "^2.6.3",
-		"symlink-dir": "^3.1.0",
-		"ts-jest": "^24.0.2",
-		"ts-node": "^8.3.0",
-		"typescript": "^3.5.1"
+		"rimraf": "3.0.0",
+		"symlink-dir": "3.1.1",
+		"ts-jest": "24.1.0",
+		"ts-node": "8.4.1",
+		"typescript": "3.6.4"
 	},
 	"keywords": [
 		"cli",
@@ -60,11 +60,11 @@
 	"author": "Moritz Jacobs <mail@moritzjacobs.de>",
 	"license": "MIT",
 	"dependencies": {
-		"@types/inquirer": "^6.0.3",
+		"@types/inquirer": "6.5.0",
 		"await-exec": "^0.1.2",
 		"chalk": "^2.4.2",
-		"commander": "^2.20.0",
+		"commander": "3.0.2",
 		"debug": "^4.1.1",
-		"inquirer": "^6.4.1"
+		"inquirer": "7.0.0"
 	}
 }

@@ -29,9 +29,10 @@ Save CLI commands as aliases on a directory basis!
 ```
 Options:
   -v, --version         output the version number
-  -l, --list            List aliases
-  -s, --save [alias]    Save an alias
-  -r, --remove [alias]  remove alias
+  -l, --list            List aliases in this directory
+  -p, --pick            Pick from aliases for this directory
+  -s, --save [alias]    Save an alias for this directory
+  -r, --remove [alias]  remove alias from this directory
   -h, --help            output usage information
 ```
 
