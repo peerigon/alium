@@ -22,7 +22,7 @@ function saveToFile(file) {
 }
 function saveDirs(dirs) {
     const file = readSaveFile();
-    saveToFile(Object.assign({}, file, { dirs }));
+    saveToFile(Object.assign(Object.assign({}, file), { dirs }));
 }
 exports.saveDirs = saveDirs;
 function saveCommand(dir, name, command) {
