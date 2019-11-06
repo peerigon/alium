@@ -5,7 +5,7 @@
 	"main": "src/cli.ts",
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/moritzjacobs/alium.git"
+		"url": "https://github.com/peerigon/alium.git"
 	},
 	"bin": {
 		"alium-bin": "./dist/cli.js"
@@ -58,7 +58,7 @@
 		"cli",
 		"alias"
 	],
-	"author": "Moritz Jacobs <mail@moritzjacobs.de>",
+	"author": "developers@peerigon.com",
 	"license": "MIT",
 	"dependencies": {
 		"@types/inquirer": "6.5.0",
