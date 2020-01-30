@@ -10,16 +10,25 @@
 	"bin": {
 		"alium-bin": "./dist/cli.js"
 	},
+	"scriptlint": {
+		"strict": true
+	},
 	"scripts": {
-		"prepublishOnly": "yarn build",
-		"build": "yarn clean && tsc -p tsconfig.json && chmod +x dist/cli.js",
-		"clean": "rimraf ./dist",
-		"dev": "yarn watch",
-		"lint": "eslint ./src --ext .ts,.tsx",
-		"lint:fix": "eslint ./src --ext .ts,.tsx --fix",
-		"test:unit": "jest",
-		"test": "yarn test:unit && yarn build && yarn lint",
-		"watch": "nodemon -e js,ts --watch src --exec \"yarn run build\""
+		"build": "run-s build:clean build:scripts build:chmod",
+		"build:chmod": "chmod +x dist/cli.js",
+		"build:clean": "rimraf ./dist",
+		"build:scripts": "tsc -p tsconfig.json",
+		"dev": "run-s dev:watch",
+		"dev:watch": "nodemon -e js,ts --watch src --exec \"yarn run build\"",
+		"other:updates": "updtr",
+		"prepublishOnly": "run-s build",
+		"start": "run-s dev",
+		"test": "run-s test:unit build test:lint test:scripts",
+		"test:lint": "eslint ./src --ext .ts,.tsx",
+		"test:lint:fix": "eslint ./src --ext .ts,.tsx --fix",
+		"test:scripts": "scriptlint",
+		"test:scripts:fix": "scriptlint --fix",
+		"test:unit": "jest"
 	},
 	"husky": {
 		"hooks": {
@@ -29,7 +38,7 @@
 	},
 	"lint-staged": {
 		"./src/**/*.{js,jsx}": [
-			"lint:fix",
+			"test:lint:fix",
 			"git add"
 		]
 	},
@@ -49,12 +58,15 @@
 		"jest": "24.9.0",
 		"lint-staged": "9.5.0",
 		"nodemon": "2.0.2",
+		"npm-run-all": "^4.1.5",
 		"prettier": "1.19.1",
 		"rimraf": "3.0.0",
+		"scriptlint": "^1.1.1",
 		"symlink-dir": "3.1.1",
 		"ts-jest": "24.3.0",
 		"ts-node": "8.5.4",
-		"typescript": "3.7.4"
+		"typescript": "3.7.4",
+		"updtr": "^3.1.0"
 	},
 	"keywords": [
 		"cli",
