@@ -5,6 +5,7 @@ module.exports = {
 	extends: ["airbnb-typescript", "prettier"],
 	rules: {
 		"no-tabs": "off",
-		"@typescript-eslint/indent": ["error", "tab"]
+		"@typescript-eslint/indent": ["error", "tab"],
+		"@typescript-eslint/quotes": "off"
 	}
 };

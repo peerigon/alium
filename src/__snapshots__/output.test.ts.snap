@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`output.ts should console.log 1`] = `
+Array [
+  Array [
+    "Ⓐ  say",
+  ],
+  Array [
+    "Ⓐ  error",
+  ],
+]
+`;

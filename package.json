@@ -11,13 +11,14 @@
 		"alium-bin": "./dist/cli.js"
 	},
 	"scripts": {
-		"prepublish": "yarn build",
+		"prepublishOnly": "yarn build",
 		"build": "yarn clean && tsc -p tsconfig.json && chmod +x dist/cli.js",
 		"clean": "rimraf ./dist",
 		"dev": "yarn watch",
 		"lint": "eslint ./src --ext .ts,.tsx",
 		"lint:fix": "eslint ./src --ext .ts,.tsx --fix",
-		"test": "yarn build && yarn lint",
+		"test:unit": "jest",
+		"test": "yarn test:unit && yarn build && yarn lint",
 		"watch": "nodemon -e js,ts --watch src --exec \"yarn run build\""
 	},
 	"husky": {
@@ -34,25 +35,26 @@
 	},
 	"devDependencies": {
 		"@types/debug": "4.1.5",
-		"@types/node": "12.7.12",
-		"@typescript-eslint/eslint-plugin": "2.3.3",
-		"@typescript-eslint/parser": "2.3.3",
-		"eslint": "6.5.1",
-		"eslint-config-airbnb-typescript": "5.0.0",
-		"eslint-config-prettier": "6.4.0",
-		"eslint-plugin-import": "^2.14.0",
+		"@types/jest": "24.0.25",
+		"@types/node": "13.1.4",
+		"@typescript-eslint/eslint-plugin": "2.15.0",
+		"@typescript-eslint/parser": "2.15.0",
+		"eslint": "6.8.0",
+		"eslint-config-airbnb-typescript": "^6.3.1",
+		"eslint-config-prettier": "6.9.0",
+		"eslint-plugin-import": "2.19.1",
 		"eslint-plugin-jsx-a11y": "^6.2.3",
-		"eslint-plugin-react": "7.16.0",
-		"husky": "3.0.9",
+		"eslint-plugin-react": "7.17.0",
+		"husky": "4.0.0",
 		"jest": "24.9.0",
-		"lint-staged": "9.4.2",
-		"nodemon": "1.19.3",
-		"prettier": "^1.18.0",
+		"lint-staged": "9.5.0",
+		"nodemon": "2.0.2",
+		"prettier": "1.19.1",
 		"rimraf": "3.0.0",
 		"symlink-dir": "3.1.1",
-		"ts-jest": "24.1.0",
-		"ts-node": "8.4.1",
-		"typescript": "3.6.4"
+		"ts-jest": "24.3.0",
+		"ts-node": "8.5.4",
+		"typescript": "3.7.4"
 	},
 	"keywords": [
 		"cli",
@@ -63,9 +65,9 @@
 	"dependencies": {
 		"@types/inquirer": "6.5.0",
 		"await-exec": "^0.1.2",
-		"chalk": "^2.4.2",
-		"commander": "3.0.2",
+		"chalk": "3.0.0",
+		"commander": "4.1.0",
 		"debug": "^4.1.1",
-		"inquirer": "7.0.0"
+		"inquirer": "7.0.3"
 	}
 }
