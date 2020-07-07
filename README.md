@@ -2,7 +2,7 @@
 
 Save CLI commands as aliases on a directory basis!
 
-[![CircleCI](https://circleci.com/gh/moritzjacobs/alium/tree/master.svg?style=svg)](https://circleci.com/gh/moritzjacobs/alium/tree/master)
+[![CircleCI](https://circleci.com/gh/peerigon/alium/tree/master.svg?style=shield)](https://circleci.com/gh/peerigon/alium/tree/master)
 
 ## Installation
 
