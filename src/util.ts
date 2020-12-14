@@ -1,4 +1,3 @@
-/* eslint-disable import/prefer-default-export */
 import { homedir } from "os";
 import path, { join } from "path";
 import fs from "fs";

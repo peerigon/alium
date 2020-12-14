@@ -1,0 +1,22 @@
+{
+	"extends": ["peerigon/presets/prettier-typescript.js"],
+	"env": {
+		"node": true
+	},
+	"root": true,
+	"parserOptions": {
+		// This path is relative to the CWD where eslint is executed
+		// https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/parser/README.md#parseroptionsproject
+		"project": "./tsconfig.json",
+		"sourceType": "module"
+	},
+	"rules": {
+		"padding-line-between-statements": "off",
+		"no-process-exit": "off",
+		"prefer-arrow/prefer-arrow-functions": "off",
+		"@typescript-eslint/no-dynamic-delete": "off",
+		"@typescript-eslint/no-unsafe-return": "off",
+		"import/no-anonymous-default-export": "off",
+		"func-style": "off"
+	}
+}
