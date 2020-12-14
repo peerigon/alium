@@ -4,6 +4,8 @@ Save CLI commands as aliases on a directory basis!
 
 [![CircleCI](https://circleci.com/gh/peerigon/alium/tree/master.svg?style=shield)](https://circleci.com/gh/peerigon/alium/tree/master)
 
+*Requires node >= 10.x*
+
 ## Installation
 
 1. `npm install alium -g` or `yarn global add alium` or similar.
