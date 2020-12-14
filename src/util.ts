@@ -51,7 +51,7 @@ export function parseArgv(argv: Array<string>) {
 	let userAlias = "";
 
 	program
-		.arguments("<cmd> [env]")
+		.arguments("[alias]")
 		.version(VERSION, "-v, --version")
 		.option("-l, --list", "List aliases in this directory")
 		.option("-p, --pick", "Pick from aliases for this directory")
