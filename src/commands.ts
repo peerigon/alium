@@ -5,7 +5,8 @@ import { ABORT_STRING } from "./constants";
 
 export function getCommandsForCwd(cwd: string): Commands | null {
 	const { dirs } = readSaveFile();
-	if (dirs && dirs[cwd]) {
+	// eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
+	if (dirs?.[cwd]) {
 		return dirs[cwd];
 	}
 	return null;
@@ -14,7 +15,7 @@ export function getCommandsForCwd(cwd: string): Commands | null {
 export function listCommandsInCwd(
 	cwd: string,
 	commands: Commands
-): string[] | null {
+): Array<string> | null {
 	const aliasPadEnd = Math.max(
 		...[...Object.keys(commands).map((s: string): number => s.length)]
 	);

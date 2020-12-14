@@ -1,4 +1,3 @@
-/* eslint-disable import/prefer-default-export */
 import inquirer from "inquirer";
 import { saveCommand, removeCommand } from "./savefile";
 import { getCommandsForCwd } from "./commands";
@@ -46,6 +45,7 @@ export async function promptSave(
 	if (aliasExists) {
 		const oldCommand = oldStruct ? oldStruct[alias] : "";
 		const shouldOverwrite = confirmOverwrite(alias, command, oldCommand);
+		// eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
 		if (!shouldOverwrite) {
 			return false;
 		}
@@ -65,6 +65,7 @@ export async function promptRemove(
 	}
 
 	const shouldRemove =
+		// eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
 		oldStruct && (await confirmRemove(alias, oldStruct[alias]));
 	if (shouldRemove) {
 		removeCommand(cwd, alias);

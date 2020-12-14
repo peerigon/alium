@@ -1,4 +1,3 @@
-/* eslint-disable import/prefer-default-export */
 import { homedir } from "os";
 import path, { join } from "path";
 import fs from "fs";
@@ -52,7 +51,7 @@ export function parseArgv(argv: Array<string>) {
 	let userAlias = "";
 
 	program
-		.arguments("<cmd> [env]")
+		.arguments("[alias]")
 		.version(VERSION, "-v, --version")
 		.option("-l, --list", "List aliases in this directory")
 		.option("-p, --pick", "Pick from aliases for this directory")

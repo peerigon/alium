@@ -1,6 +1,5 @@
 import debugHOC from "debug";
 
-/* eslint-disable no-console */
 import chalk from "chalk";
 
 export function say(str: string) {
