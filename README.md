@@ -29,8 +29,6 @@ Save CLI commands as aliases on a directory basis!
 
 ## Usage
 
-<!--PWE::{"clockodoProjectId":"99999"}-->
-
 ### Quickstart
 
 ```
@@ -69,8 +67,10 @@ $ ali -s "some-long-winded-command --with parameters --you can --never ./remembe
 
 MIT
 
+<!--PWE::{"clockodoProjectId":"2445310"}-->
+
 ## Sponsors
 
 [<img src="https://assets.peerigon.com/peerigon/logo/peerigon-logo-flat-spinat.png" width="150" />](https://peerigon.com)
 
-<!--PWE::{"clockodoProjectId":"2445310"}-->
+
